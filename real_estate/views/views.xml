@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_property_tree" model="ir.ui.view">
+        <field name="name">real.estate.property.tree</field>
+        <field name="model">real.estate.property</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="price"/>
+                <field name="area"/>
+            </list>
+        </field>
+    </record>
+
+
+    <record id="view_property_form" model="ir.ui.view">
+        <field name="name">real.estate.property.form</field>
+        <field name="model">real.estate.property</field>
+      <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                        <field name="address"/>
+                        <field name="area"/>
+                        <field name="price"/>
+                        <field name="available_from"/>
+                        <field name="is_available"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_property_search" model="ir.ui.view">
+        <field name="name">real.estate.property.search</field>
+        <field name="model">real.estate.property</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="address"/>
+                <field name="is_available"/>
+                <filter name="available_filter" string="Available" domain="[('is_available','=',True)]"/>
+                <filter name="unavailable_filter" string="Unavailable" domain="[('is_available','=',False)]"/>
+            </search>
+        </field>
+    </record>
+
+
+    <record id="action_property" model="ir.actions.act_window">
+        <field name="name">Properties</field>
+        <field name="res_model">real.estate.property</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_property_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create your first property</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_real_estate_root" name="Real Estate"/>
+    <menuitem id="menu_property" name="Properties"
+              parent="menu_real_estate_root"
+              action="action_property"/>
+
+</odoo>
+
+
