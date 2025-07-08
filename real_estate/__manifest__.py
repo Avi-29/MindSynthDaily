@@ -24,9 +24,10 @@ Long description of module's purpose
     'data': [
         'security/ir.model.access.csv',
         'views/views.xml',
+        'views/property_offer.xml',
         'views/property_type.xml',
         'views/property_tag.xml',
-        'views/property_offer.xml',
+        'views/res_users_inherited_view.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

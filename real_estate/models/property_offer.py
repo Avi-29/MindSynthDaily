@@ -5,6 +5,7 @@ from odoo.exceptions import UserError, ValidationError
 class PropertyOffer(models.Model):
     _name = 'real.estate.property.offer'
     _description = 'Property Offer'
+    _order = "price desc"
 
     price = fields.Float(string='Offer Price', required=True)
     status = fields.Selection(
@@ -16,6 +17,27 @@ class PropertyOffer(models.Model):
     property_id = fields.Many2one('real.estate.property', string='Property', required=True, ondelete='cascade')
     validity = fields.Integer(string="Validity (days)", default=7)
     date_deadline = fields.Date(string="Deadline", compute="_compute_deadline", inverse="_inverse_deadline", store=True)
+    property_type_id = fields.Many2one(
+        related='property_id.property_type_id',
+        store=True,
+        string="Property Type"
+    )
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            property_id = vals.get('property_id')
+            price = vals.get('price', 0)
+
+            property_rec = self.env['real.estate.property'].browse(property_id)
+
+            if property_rec.offer_ids and price <= max(property_rec.offer_ids.mapped('price')):
+                raise ValidationError("Offer price must be higher than existing offers.")
+
+            if property_rec.state not in ['offer_accepted', 'sold']:
+                property_rec.state = 'offer_received'
+
+        return super().create(vals_list)
 
     @api.depends('create_date', 'validity')
     def _compute_deadline(self):

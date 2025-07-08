@@ -4,6 +4,7 @@ from odoo.exceptions import UserError,ValidationError
 class Property(models.Model):
     _name = 'real.estate.property'
     _description = 'Real Estate Property'
+    _order = "id desc"
 
     name = fields.Char(string='Property Name', required=True)
     description = fields.Text(string='Description')
@@ -44,6 +45,12 @@ class Property(models.Model):
         ('sold', 'Sold'),
         ('cancelled', 'Cancelled')
     ], string='Status', required=True, default='new')
+
+    def unlink(self):
+        for rec in self:
+            if rec.state not in ['new', 'cancelled']:
+                raise UserError("Only properties in state 'New' or 'Cancelled' can be deleted.")
+        return super().unlink()
 
     @api.depends('living_area', 'garden_area')
     def _compute_total_area(self):

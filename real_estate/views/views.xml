@@ -4,9 +4,12 @@
         <field name="name">real.estate.property.tree</field>
         <field name="model">real.estate.property</field>
         <field name="arch" type="xml">
-            <list>
+            <list decoration-success="state in ('offer_received', 'offer_accepted')"
+                  decoration-muted="state == 'sold'"
+                  decoration-bf="state == 'offer_accepted'">
                 <field name="name"/>
                 <field name="selling_price"/>
+                <field name="date_availability" optional="hide"/>
             </list>
         </field>
     </record>
@@ -30,7 +33,7 @@
                         <field name="name"/>
                     </h1>
                     <h2>
-                        <field name="property_tag" widget="many2many_tags"/>
+                        <field name="property_tag" widget="many2many_tags" options="{'color_field': 'color'}"/>
                     </h2>
                     <group>
                         <group>
@@ -66,10 +69,9 @@
                         </page>
                         <page string="Offers">
                             <field name="offer_ids">
-                                <list>
+                                <list decoration-danger="status == 'refused'" decoration-success="status == 'accepted'">
                                     <field name="partner_id"/>
                                     <field name="price"/>
-                                    <field name="status"/>
                                     <field name="validity"/>
                                     <field name="date_deadline"/>
                                 </list>
@@ -90,6 +92,7 @@
                 <field name="name"/>
                 <field name="postcode"/>
                 <field name="is_available"/>
+                <field name="living_area" filter_domain="[('living_area','>=',self)]"/>
                 <filter name="available_filter" string="Available" domain="[('is_available','=',True)]"/>
                 <filter name="unavailable_filter" string="Unavailable" domain="[('is_available','=',False)]"/>
             </search>
@@ -102,6 +105,7 @@
         <field name="res_model">real.estate.property</field>
         <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="view_property_search"/>
+        <field name="context">{'search_default_available_filter': True}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">Create your first property</p>
         </field>
