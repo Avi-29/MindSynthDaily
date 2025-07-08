@@ -56,11 +56,10 @@ class PropertyOffer(models.Model):
             # Mark all other offers as refused
             all_offers = self.env['real.estate.property.offer'].search([('property_id', '=', rec.property_id.id)])
             all_offers.write({'status': 'refused'})
-
-            rec.status = 'accepted'
             rec.property_id.state = 'offer_accepted'
             rec.property_id.selling_price = rec.price
             rec.property_id.buyer_id = rec.partner_id
+            rec.status = 'accepted'
 
     def action_refuse_offer(self):
         for rec in self:

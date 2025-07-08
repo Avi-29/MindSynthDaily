@@ -77,6 +77,9 @@ class Property(models.Model):
         for rec in self:
             if rec.state == 'cancelled':
                 raise UserError("Cancelled property cannot be sold.")
+            accepted_offer = rec.offer_ids.filtered(lambda offer: offer.status == 'accepted')
+            if not accepted_offer:
+                raise UserError("You must accept an offer before selling the property.")
             rec.state = 'sold'
 
     def action_cancel(self):
