@@ -2,19 +2,19 @@
 {
     'name': "real_estate",
 
-    'summary': "Short (1 phrase/line) summary of the module's purpose",
+    'summary': "A Simple Real Estate Module",
 
     'description': """
-Long description of module's purpose
+A Simple Real Estate Module
     """,
 
-    'author': "My Company",
-    'website': "https://www.yourcompany.com",
+    'author': "MindSynthTechnogy@Avishek",
+    'website': "https://www.mindsynthtech.com",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/15.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
-    'category': 'Uncategorized',
+    'category': 'other',
     'version': '0.1',
 
     # any module necessary for this one to work correctly
@@ -23,15 +23,14 @@ Long description of module's purpose
     # always loaded
     'data': [
         'security/ir.model.access.csv',
-        'views/views.xml',
+        'views/property_report_template.xml',
+        'views/property_views.xml',
         'views/property_offer.xml',
         'views/property_type.xml',
         'views/property_tag.xml',
         'views/res_users_inherited_view.xml',
+        'views/menu.xml',
     ],
-    # only loaded in demonstration mode
-    'demo': [
-        'demo/demo.xml',
-    ],
+
 }
 

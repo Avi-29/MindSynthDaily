@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="real_estate_property_report">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-foreach="docs" t-as="object">
+                    <div class="page" style="font-size: 13px; line-height: 1.6; padding: 10px;">
+                        <h2 style="text-align: center; margin-bottom: 20px;">
+                            Property Report:
+                            <t t-esc="object.name"/>
+                        </h2>
+
+                        <!-- Two-column layout -->
+                        <div style="display: flex; gap: 30px; align-items: flex-start; margin-bottom: 20px;">
+                            <!-- Left: Image -->
+                            <div style="flex: 1; text-align: center;">
+                                <img t-if="object.image"
+                                     t-att-src="image_data_uri(object.image)"
+                                     style="max-width: 100%; max-height: 250px; border-radius: 8px; box-shadow: 0 0 6px rgba(0,0,0,0.2);"/>
+                            </div>
+
+                            <!-- Right: Key Fields -->
+                            <div style="flex: 2;">
+                                <table class="table table-sm" style="width: 100%; border: none;">
+                                    <tr>
+                                        <td>
+                                            <strong>Expected Price:</strong>
+                                        </td>
+                                        <td>
+                                            <t t-esc="object.expected_price"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Selling Price:</strong>
+                                        </td>
+                                        <td>
+                                            <t t-esc="object.selling_price"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Status:</strong>
+                                        </td>
+                                        <td>
+                                            <t t-esc="object.state"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Best Offer:</strong>
+                                        </td>
+                                        <td>
+                                            <t t-esc="object.best_price"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Bedrooms:</strong>
+                                        </td>
+                                        <td>
+                                            <t t-esc="object.bedrooms"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Living Area:</strong>
+                                        </td>
+                                        <td>
+                                            <t t-esc="object.living_area"/>
+                                            sqm
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Garden:</strong>
+                                        </td>
+                                        <td>
+                                            <t t-esc="object.garden"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Garden Area:</strong>
+                                        </td>
+                                        <td>
+                                            <t t-esc="object.garden_area"/>
+                                            sqm
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Garden Orientation:</strong>
+                                        </td>
+                                        <td>
+                                            <t t-esc="object.garden_orientation"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Total Area:</strong>
+                                        </td>
+                                        <td>
+                                            <t t-esc="object.total_area"/>
+                                            sqm
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <div style="margin-top: 20px;">
+                            <h3 style="margin-bottom: 10px;">Property Description</h3>
+                            <p style="text-align: justify;">
+                                <t t-esc="object.description"/>
+                            </p>
+                        </div>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

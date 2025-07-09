@@ -8,7 +8,7 @@ class Property(models.Model):
 
     name = fields.Char(string='Property Name', required=True)
     description = fields.Text(string='Description')
-
+    image = fields.Image(string="Property Image")
     postcode = fields.Char(string='Postcode')
     date_availability = fields.Date(string='Available From')
     expected_price = fields.Float(string='Expected Price')

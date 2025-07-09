@@ -8,7 +8,7 @@ class PropertyType(models.Model):
     ]
     _order = "sequence, name"
 
-    name = fields.Char(required=True)
+    name = fields.Char(string="Property Type",required=True)
     property_ids = fields.One2many('real.estate.property', 'property_type_id', string="Properties")
     sequence=fields.Integer(string="Sequence", default=1, help="Used to order stages. Lower is better.")
     offer_ids = fields.One2many('real.estate.property.offer', 'property_type_id', string="Offers")
