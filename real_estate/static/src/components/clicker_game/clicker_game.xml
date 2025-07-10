@@ -1,0 +1,14 @@
+<template xml:space="preserve">
+  <t t-name="real_estate.ClickerGame">
+    <div class="p-4 text-center border rounded" style="max-width:300px; margin:auto;">
+      <h3>🏠 Clicker Game</h3>
+      <p class="display-4 my-2"><t t-esc="state.count"/></p>
+      <div class="d-flex justify-content-center gap-2">
+        <button t-on-click="increment" class="btn btn-primary btn-lg">Click Me!</button>
+        <button t-on-click="reset" class="btn btn-secondary btn-lg">Reset</button>
+      </div>
+    </div>
+  </t>
+</template>
+
+

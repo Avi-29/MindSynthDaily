@@ -6,6 +6,8 @@
               action="action_property"/>
     <menuitem id="menu_property_tag" parent="menu_real_estate_root"
               name="Property Tags" action="action_property_tag" sequence="16"/>
-        <menuitem id="menu_property_type" parent="menu_real_estate_root"
+    <menuitem id="menu_property_type" parent="menu_real_estate_root"
               name="Property Types" action="action_property_type" sequence="14"/>
+    <menuitem id="menu_real_estate_clicker_action" parent="menu_real_estate_root"
+              name="Clicker Example" action="action_real_estate_clicker" sequence="18"/>
 </odoo>

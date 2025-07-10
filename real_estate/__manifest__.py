@@ -31,6 +31,10 @@ A Simple Real Estate Module
         'views/res_users_inherited_view.xml',
         'views/menu.xml',
     ],
-
+'assets': {
+    'web.assets_backend': [
+        'real_estate/static/src/components/*/**.js',
+        'real_estate/static/src/components/*/**.xml',
+    ],
 }
-
+}

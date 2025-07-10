@@ -13,7 +13,6 @@ class Property(models.Model):
     date_availability = fields.Date(string='Available From')
     expected_price = fields.Float(string='Expected Price')
     selling_price = fields.Float(string='Selling Price', readonly=True)
-
     bedrooms = fields.Integer(string='Bedrooms')
     living_area = fields.Float(string='Living Area (sqm)')
     facades = fields.Integer(string='Facades')
