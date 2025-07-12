@@ -23,12 +23,14 @@ Long description of module's purpose
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
-        'views/views.xml',
         'views/templates.xml',
+        'views/property_list_view_inherited.xml',
     ],
-    # only loaded in demonstration mode
-    'demo': [
-        'demo/demo.xml',
-    ],
+    'assets': {
+        'web.assets_backend': [
+            'real_estate_account/static/src/components/*/**.js',
+            'real_estate_account/static/src/components/*/**.xml',
+        ],
+    }
 }
 

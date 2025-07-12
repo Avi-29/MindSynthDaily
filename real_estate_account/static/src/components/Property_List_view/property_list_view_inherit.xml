@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="real_estate_account.propertyListView" t-inherit="web.ListView">
+        <xpath expr="//t[contains(@t-if, '!editedRecord and activeActions.create and props.showButtons')]" position="inside">
+            <button class="btn btn-secondary border ms-2" t-on-click="viewInvoices">View Invoices</button>
+        </xpath>
+    </t>
+</templates>
