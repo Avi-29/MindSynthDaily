@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_partners_form_real_estate_inherit" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.real.estate</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='email']" position="attributes">
+                <attribute name="widget">valid_email</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_employees_form_real_estate_inherit" model="ir.ui.view">
+        <field name="name">hr.employee.form.inherit.real.estate</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='work_email']" position="attributes">
+                <attribute name="widget">valid_email</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

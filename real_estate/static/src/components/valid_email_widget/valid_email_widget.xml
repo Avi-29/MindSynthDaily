@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="real_estate.ValidemailWidget" t-inherit="web.FormEmailField">
+        <xpath expr="//input" position="attributes">
+            <attribute name="t-on-input">onInput</attribute>
+        </xpath>
+        <xpath expr="//input" position="after">
+            <t t-if="props.record.data[props.name] and !state.isValid">
+                <div class="text-danger small">
+                    Invalid Email!
+                </div>
+            </t>
+        </xpath>
+    </t>
+</templates>
