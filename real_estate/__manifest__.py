@@ -18,7 +18,7 @@ A Simple Real Estate Module
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','hr'],
+    'depends': ['base','hr','restful'],
 
     # always loaded
     'data': [

@@ -1,10 +1,11 @@
-# controllers/my_model_api.py
 from odoo import http
 from odoo.http import request
+from odoo.addons.restful.controllers.main import validate_token
 
 class CustomAPI(http.Controller):
 
-    @http.route('/api/real_estate/create', type='json', auth='user', methods=['POST'], csrf=False)
+    @validate_token
+    @http.route('/api/real_estate/create', type='json', auth='none', methods=['POST'], csrf=False)
     def create(self, **kwargs):
         try:
             name = kwargs.get('name')
@@ -12,7 +13,6 @@ class CustomAPI(http.Controller):
 
             if not name:
                 return {'error': 'Missing required field: name'}, 400
-
             record = request.env['real.estate.property'].sudo().create({
                 'name': name,
                 'description': description
@@ -27,7 +27,8 @@ class CustomAPI(http.Controller):
         except Exception as e:
             return {'error': str(e)}, 500
 
-    @http.route('/api/real_estate/<int:record_id>', type='json', auth='user', methods=['GET'], csrf=False)
+    @validate_token
+    @http.route('/api/real_estate/<int:record_id>', type='json', auth='none', methods=['GET'], csrf=False)
     def read(self, record_id):
         try:
             rec = request.env['real.estate.property'].sudo().browse(record_id)
@@ -43,7 +44,8 @@ class CustomAPI(http.Controller):
         except Exception as e:
             return {'error': str(e)}, 500
 
-    @http.route('/api/real_estate', type='json', auth='user', methods=['GET'], csrf=False)
+    @validate_token
+    @http.route('/api/real_estate', type='json', auth='none', methods=['GET'], csrf=False)
     def read_all(self):
         try:
             records = request.env['real.estate.property'].sudo().search([])
@@ -55,7 +57,8 @@ class CustomAPI(http.Controller):
         except Exception as e:
             return {'error': str(e)}, 500
 
-    @http.route('/api/real_estate/<int:record_id>', type='json', auth='user', methods=['PUT'], csrf=False)
+    @validate_token
+    @http.route('/api/real_estate/<int:record_id>', type='json', auth='none', methods=['PUT'], csrf=False)
     def update(self, record_id, **kwargs):
         try:
             record = request.env['real.estate.property'].sudo().browse(record_id)
@@ -71,7 +74,8 @@ class CustomAPI(http.Controller):
         except Exception as e:
             return {'error': str(e)}, 500
 
-    @http.route('/api/real_estate/<int:record_id>', type='json', auth='user', methods=['DELETE'], csrf=False)
+    @validate_token
+    @http.route('/api/real_estate/<int:record_id>', type='json', auth='none', methods=['DELETE'], csrf=False)
     def delete(self, record_id):
         try:
             record = request.env['real.estate.property'].sudo().browse(record_id)
